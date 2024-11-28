@@ -14,7 +14,18 @@
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    
+    <TextBlock>Hello</TextBlock>
+    <!-- This handles the actions when someone right clicks -->
+    <Window.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Word Wrap" />
+            <MenuItem Header="Undo" />
+            <MenuItem Header="Cut" />
+            <MenuItem Header="Copy" />
+            <MenuItem Header="Paste" />
+            <MenuItem Header="Select All" />
+        </ContextMenu>
+    </Window.ContextMenu>
     
 </Window>

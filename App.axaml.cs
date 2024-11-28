@@ -1,3 +1,4 @@
+using System;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
@@ -15,17 +16,40 @@ public partial class App : Application
         AvaloniaXamlLoader.Load(this);
     }
 
-    public override void OnFrameworkInitializationCompleted()
+    public override async void OnFrameworkInitializationCompleted()
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             // Line below is needed to remove Avalonia data validation.
             // Without this line you will get duplicate validations from both Avalonia and CT
             BindingPlugins.DataValidators.RemoveAt(0);
-            desktop.MainWindow = new MainWindow
+            
+            var splash = new Splash();
+
+            desktop.MainWindow = splash;
+            splash.Show();
+
+
+            try
             {
-                DataContext = new MainWindowViewModel(),
-            };
+                await splash.RunInitializationAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Initialization error: {ex.Message}");
+            }
+            finally
+            {
+
+                var mainWin = new MainWindow
+                {
+                    DataContext = new MainWindowViewModel(),
+                };
+                desktop.MainWindow = mainWin;
+                mainWin.Show();
+
+                splash.Close();
+            }
         }
 
         base.OnFrameworkInitializationCompleted();
