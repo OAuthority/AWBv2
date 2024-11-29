@@ -40,11 +40,11 @@ public partial class App : Application
             }
             finally
             {
-
-                var mainWin = new MainWindow
-                {
-                    DataContext = new MainWindowViewModel(),
-                };
+                
+                var mainWin = new MainWindow();
+                
+                mainWin.DataContext = new MainWindowViewModel(mainWin);
+                
                 desktop.MainWindow = mainWin;
                 mainWin.Show();
 

@@ -7,7 +7,9 @@
         x:Class="AWBv2.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="AWBv2">
+        Title="AWBv2"
+        Background="white"
+        Foreground="Black">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
@@ -15,7 +17,6 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     
-    <TextBlock>Hello</TextBlock>
     <!-- This handles the actions when someone right clicks -->
     <Window.ContextMenu>
         <ContextMenu>
@@ -28,4 +29,17 @@
         </ContextMenu>
     </Window.ContextMenu>
     
+    <StackPanel>
+        <Menu Background="#FAFAFA" Foreground="black">
+            <MenuItem Header="_File" Foreground="Black">
+                <MenuItem Header="_Exit" Command="{Binding CloseWindow}"/>
+            </MenuItem>
+            <MenuItem Header="View" Foreground="Black" />
+            <MenuItem Header="List" Foreground="Black" />
+            <MenuItem Header="Options" Foreground="Black" />
+            <MenuItem Header="Tools" Foreground="Black" />
+        </Menu>
+        <!-- Placeholder for now for the AWBWebBrowser --> 
+        <Panel Background="Yellow" Height="250" />
+    </StackPanel>
 </Window>
