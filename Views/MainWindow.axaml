@@ -29,8 +29,9 @@
         </ContextMenu>
     </Window.ContextMenu>
     
-    <StackPanel>
-        <Menu Background="#FAFAFA" Foreground="black">
+    <DockPanel LastChildFill="True">
+        <!-- Top Menu -->
+        <Menu DockPanel.Dock="Top" Background="#FAFAFA" Foreground="black">
             <MenuItem Header="_File" Foreground="Black">
                 <MenuItem Header="_Exit" Command="{Binding CloseWindow}"/>
             </MenuItem>
@@ -39,7 +40,24 @@
             <MenuItem Header="Options" Foreground="Black" />
             <MenuItem Header="Tools" Foreground="Black" />
         </Menu>
-        <!-- Placeholder for now for the AWBWebBrowser --> 
-        <Panel Background="Yellow" Height="250" />
-    </StackPanel>
+
+        <!-- Placeholder for the AWBWebBrowser (this could be another DockPanel) -->
+        <Panel DockPanel.Dock="Top" Background="Yellow" Height="250" />
+        
+        <DockPanel DockPanel.Dock="Bottom" Height="22">
+            <ProgressBar DockPanel.Dock="Left" Minimum="0" Maximum="100" Width="100" Height="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" />
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <TextBlock Text="{Binding LblTimer, StringFormat='Timer: {0}'}" Margin="5,0" />
+                <TextBlock Text="{Binding LblPagesPerMin, StringFormat='Pages/min: {0}'}" Margin="5,0" />
+                <TextBlock Text="{Binding LblEditsPerMin, StringFormat='Edits/min: {0}'}" Margin="5,0" />
+                <TextBlock Text="{Binding LblEditCount, StringFormat='Edits: {0}'}" Margin="5,0" />
+                <TextBlock Text="{Binding LblIgnoredArticles, StringFormat='Skipped: {0}'}" Margin="5,0" />
+                <TextBlock Text="{Binding LblNewArticles, StringFormat='New: {0}'}" Margin="5,0" />
+                <TextBlock Text="{Binding LblProject}" Margin="5,0" />
+                <TextBlock Text="{Binding LblUsername, StringFormat='User: {0}'}" Margin="5,0" />
+            </StackPanel>
+        </DockPanel>
+        <Panel Background="Green" />
+    </DockPanel>
+
 </Window>

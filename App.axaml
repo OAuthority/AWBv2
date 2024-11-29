@@ -11,6 +11,5 @@
   
     <Application.Styles>
         <SimpleTheme />
-        <StyleInclude Source="avares://Citrus.Avalonia/Citrus.xaml"/>
     </Application.Styles>
 </Application>
