@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Avalonia.Controls;
+using ReactiveUI;
 
 namespace AWBv2.ViewModels;
 
-public partial class MainWindowViewModel : ViewModelBase
+public partial class MainWindowViewModel : ReactiveObject
 {
     private readonly Window _window;
 
@@ -16,14 +18,14 @@ public partial class MainWindowViewModel : ViewModelBase
     private int _lblPagesPerMin;
     private int _lblTimer;
     
-    public string LblUsername { get => _lblUsername; set => _lblUsername = value; }
-    public string LblProject { get => _lblProject; set => _lblProject = value; }
-    public int LblNewArticles { get => _lblNewArticles; set => _lblNewArticles = value; }
-    public int LblIgnoredArticles { get => _lblIgnoredArticles; set => _lblIgnoredArticles = value; }
-    public int LblEditCount { get => _lblEditCount; set => _lblEditCount = value; }
-    public int LblEditsPerMin { get => _lblEditsPerMin; set => _lblEditsPerMin = value; }
-    public int LblPagesPerMin { get => _lblPagesPerMin; set => _lblPagesPerMin = value; }
-    public int LblTimer { get => _lblTimer; set => _lblTimer = value; }
+    public string LblUsername { get => _lblUsername; set => _lblUsername = this.RaiseAndSetIfChanged(ref _lblUsername, value); }
+    public string LblProject { get => _lblProject; set => _lblProject = this.RaiseAndSetIfChanged(ref _lblProject, value); }
+    public int LblNewArticles { get => _lblNewArticles; set => _lblNewArticles = this.RaiseAndSetIfChanged(ref _lblNewArticles, value); }
+    public int LblIgnoredArticles { get => _lblIgnoredArticles; set => _lblIgnoredArticles = this.RaiseAndSetIfChanged(ref _lblIgnoredArticles, value); }
+    public int LblEditCount { get => _lblEditCount; set => _lblEditCount = this.RaiseAndSetIfChanged(ref _lblEditCount, value); }
+    public int LblEditsPerMin { get => _lblEditsPerMin; set => _lblEditsPerMin = this.RaiseAndSetIfChanged(ref _lblEditsPerMin, value); }
+    public int LblPagesPerMin { get => _lblPagesPerMin; set => _lblPagesPerMin = this.RaiseAndSetIfChanged(ref _lblPagesPerMin, value); }
+    public int LblTimer { get => _lblTimer; set => _lblTimer = this.RaiseAndSetIfChanged(ref _lblTimer, value); }
     
     public MainWindowViewModel(Window window)
     {
