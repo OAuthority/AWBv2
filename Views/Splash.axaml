@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="478" d:DesignHeight="302"
         x:Class="AWBv2.Views.Splash"
-        Title="Splash"
+        Title="AutoWikiBrowser v2"
         Background="White"
         ShowInTaskbar="False"
         Topmost="True">
