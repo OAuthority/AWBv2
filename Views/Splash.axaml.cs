@@ -24,11 +24,7 @@ public partial class Splash : Window
             ProgressBar.Value = percent;
         });
     }
-    
-    protected override void OnClosed(EventArgs e)
-    {
-        base.OnClosed(e);
-    }
+
     public async Task RunInitializationAsync()
     {
         for (int i = 0; i <= 100; i++)
