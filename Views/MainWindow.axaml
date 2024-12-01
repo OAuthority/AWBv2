@@ -6,6 +6,7 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="AWBv2.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
+		xmlns:local="using:AWBv2.Controls"
         Icon="/Assets/avalonia-logo.ico"
         Title="AWBv2"
         Background="white"
@@ -30,7 +31,6 @@
     </Window.ContextMenu>
     
     <DockPanel LastChildFill="True">
-        <!-- Top Menu -->
         <Menu DockPanel.Dock="Top" Background="#FAFAFA" Foreground="black">
             <MenuItem Header="_File" Foreground="Black">
                 <MenuItem Header="_Exit" Command="{Binding CloseWindow}"/>
@@ -40,10 +40,10 @@
             <MenuItem Header="Options" Foreground="Black" />
             <MenuItem Header="Tools" Foreground="Black" />
         </Menu>
-
-        <!-- Placeholder for the AWBWebBrowser (this could be another DockPanel) -->
-        <Panel DockPanel.Dock="Top" Background="Yellow" Height="250" />
         
+		<!--AWBWebBrowser window that appears at the top of the screen to show diffs et al. -->
+       <local:AWBWebBrowser x:Name="WebBrowser"  DockPanel.Dock="Top" Height="300" Background="White"/>
+		
         <DockPanel DockPanel.Dock="Bottom" Height="22">
             <ProgressBar DockPanel.Dock="Left" Minimum="0" Maximum="100" Width="100" Height="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" />
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center">

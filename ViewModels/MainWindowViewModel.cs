@@ -1,23 +1,31 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Avalonia.Controls;
+using AWBv2.Controls;
 using ReactiveUI;
 
 namespace AWBv2.ViewModels;
 
-public partial class MainWindowViewModel : ReactiveObject
+public partial class MainWindowViewModel(Window window) : ReactiveObject
 {
-    private readonly Window _window;
+    private readonly Window _window = window ?? throw new ArgumentNullException(nameof(window), "Window cannot be null");
+    private AWBWebBrowser _webBrowser;
+    private string _lblUsername = string.Empty;
+    private string _lblProject = "Wikipedia";
+    private int _lblNewArticles = 0;
+    private int _lblIgnoredArticles = 0;
+    private int _lblEditCount = 0;
+    private int _lblEditsPerMin = 0;
+    private int _lblPagesPerMin = 0;
+    private int _lblTimer = 0;
 
-    private string _lblUsername;
-    private string _lblProject;
-    private int _lblNewArticles;
-    private int _lblIgnoredArticles;
-    private int _lblEditCount;
-    private int _lblEditsPerMin;
-    private int _lblPagesPerMin;
-    private int _lblTimer;
-    
+    public AWBWebBrowser WebBrowser
+    {
+        get => _webBrowser;
+        set => this.RaiseAndSetIfChanged(ref _webBrowser, value);
+    }
+
+
     public string LblUsername { get => _lblUsername; set => _lblUsername = this.RaiseAndSetIfChanged(ref _lblUsername, value); }
     public string LblProject { get => _lblProject; set => _lblProject = this.RaiseAndSetIfChanged(ref _lblProject, value); }
     public int LblNewArticles { get => _lblNewArticles; set => _lblNewArticles = this.RaiseAndSetIfChanged(ref _lblNewArticles, value); }
@@ -26,19 +34,6 @@ public partial class MainWindowViewModel : ReactiveObject
     public int LblEditsPerMin { get => _lblEditsPerMin; set => _lblEditsPerMin = this.RaiseAndSetIfChanged(ref _lblEditsPerMin, value); }
     public int LblPagesPerMin { get => _lblPagesPerMin; set => _lblPagesPerMin = this.RaiseAndSetIfChanged(ref _lblPagesPerMin, value); }
     public int LblTimer { get => _lblTimer; set => _lblTimer = this.RaiseAndSetIfChanged(ref _lblTimer, value); }
-    
-    public MainWindowViewModel(Window window)
-    {
-        _window = window ?? throw new ArgumentNullException(nameof(window), "Window cannot be null");
-        _lblUsername = string.Empty;
-        _lblProject = "Wikipedia";
-        _lblNewArticles = 0;
-        _lblIgnoredArticles = 0;
-        _lblEditCount = 0;
-        _lblEditsPerMin = 0;
-        _lblPagesPerMin = 0;
-        _lblTimer = 0;
-    }
 
     /// <summary>
     /// Close the window and exit the programme when clicked

@@ -9,5 +9,6 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        WebBrowser.Navigate("https://en.wikipedia.org");
     }
 }
